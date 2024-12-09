@@ -93,7 +93,3 @@ python bot.py
 - `2d` - 2 days from now
 - `15:30` - Today at 15:30
 - `25-12-2024 14:30` - Specific date and time
-
-## License
-
-[Include your license information here]
