@@ -1,43 +1,93 @@
 # Telegram Reminder Bot
 
-A simple Telegram bot that helps you set reminders for yourself or others.
+A Telegram bot that helps you set and manage reminders for yourself and other users.
 
 ## Features
 
-- Set reminders with custom messages
-- Supports different time units (minutes, hours, days)
-- Persists reminders in a text file
-- Mentions users when their reminder is due
+- Set reminders with flexible time formats
+- Manage contacts
+- Send reminders to other users
+- Persistent storage of reminders and contacts
 
-## Commands
+## Installation & Setup
 
-- `/start` - Start the bot and get usage instructions
-- `/remind <time> <message>` - Set a reminder
-  - Time format: `<number><unit>`
-    - Units: `m` (minutes), `h` (hours), `d` (days)
-  - Example: `/remind 1h Take a break`
-- `/add_contact <id> <name>` - Add a contact
-  - Example: `/add_contact 123456789 John`
+There are two ways to run this bot:
 
-## Setup
+### 1. Using Docker (Recommended)
 
-1. Create a new Telegram bot by talking to [@BotFather](https://t.me/botfather)
-2. Copy your bot token
-3. Create a `.env` file and add your token:
-   ```
-   TELEGRAM_TOKEN=your_telegram_bot_token_here
-   ```
-4. Install required packages:
-   ```
-   pip install python-telegram-bot python-dotenv "python-telegram-bot[job-queue]"
-   ```
-5. Run the bot:
-   ```
-   python bot.py
-   ```
+#### Prerequisites
+- Docker installed on your system
+- Telegram Bot Token (get it from [@BotFather](https://t.me/BotFather))
 
-## Requirements
+#### Steps
+1. Build the Docker image:
+```bash
+docker build -t telegram-reminder-bot .
+```
 
+2. Run the container:
+```bash
+docker run -d --name telegram-reminder-bot -e TELEGRAM_TOKEN="your-token-here" telegram-reminder-bot
+```
+
+#### Docker Management Commands
+```bash
+# View logs
+docker logs telegram-reminder-bot
+
+# Stop the bot
+docker stop telegram-reminder-bot
+
+# Start the bot again
+docker start telegram-reminder-bot
+
+# Remove the container
+docker rm telegram-reminder-bot
+```
+
+### 2. Using Python Directly
+
+#### Prerequisites
 - Python 3.8 or higher
-- python-telegram-bot
-- python-dotenv
+- pip (Python package manager)
+
+#### Steps
+1. Clone the repository:
+```bash
+git clone [repository-url]
+cd telegram-reminder-bot
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Create a `.env` file in the project root:
+```
+TELEGRAM_TOKEN=your-token-here
+```
+
+4. Run the bot:
+```bash
+python bot.py
+```
+
+## Bot Commands
+
+- `/start` - Get started with the bot
+- `/remind` - Set a reminder
+- `/add_contact` - Add a new contact
+- `/help` - General Help
+
+### Time Format Examples
+
+- `1h` - 1 hour from now
+- `30m` - 30 minutes from now
+- `2d` - 2 days from now
+- `15:30` - Today at 15:30
+- `25-12-2024 14:30` - Specific date and time
+
+## License
+
+[Include your license information here]

@@ -22,6 +22,8 @@ class Reminder:
         self.message = message
         self.remind_time = remind_time
 
+
+
 def save_reminder(reminder):
     with open(REMINDERS_FILE, 'a') as f:
         f.write(f"{reminder.remindee_chat_id}|{reminder.victim_chat_id}|{reminder.victim_name}|{reminder.message}|{reminder.remind_time.strftime('%d-%m-%Y %H:%M')}\n")
@@ -72,6 +74,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         'Time format: 1h, 2d, 30m, etc.\n'
         'Or you can add a date: 2024-12-08 18:19\n'
         'Example: /remind 1h Take a break'
+    )
+
+async def help(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Send a message when the command /help is issued."""
+    await update.message.reply_text(
+        'Available commands:\n'
+        '/remind <time> <message> - Set a reminder\n'
+        '/add_contact <id> <name> - Add a contact\n\n'
+        'To get the user ID, use /start command.\n'
+        'If you want to add a contact, you need to ask them to use /start command to get their ID.\n'
+        'Time format: 1h, 2d, 30m, etc.\n'
+        'Or you can add a date: 2024-12-08 18:19\n'
+        'Date must follow the format: dd-MM-yyyy HH:mm or just HH:mm\n'
+        'Example: /remind 1h Take a break'
+        'Example: /remind 15:30 Take a break'
+        'Example: /remind 25-12-2024 15:30 Take a break'
     )
 
 async def add_contact(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -312,6 +330,7 @@ def main():
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("remind", remind))
+    application.add_handler(CommandHandler("help", help))
     application.add_handler(CommandHandler("add_contact", add_contact))
 
     application.add_handler(CallbackQueryHandler(stop_reminders, pattern='^stop_reminders$')) 
