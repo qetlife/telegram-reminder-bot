@@ -20,12 +20,18 @@ There are two ways to run this bot:
 - Telegram Bot Token (get it from [@BotFather](https://t.me/BotFather))
 
 #### Steps
-1. Build the Docker image:
+1. Clone the repository:
+```bash
+git clone https://github.com/qetlife/telegram-reminder-bot.git
+cd telegram-reminder-bot
+```
+
+2. Build the Docker image:
 ```bash
 docker build -t telegram-reminder-bot .
 ```
 
-2. Run the container:
+3. Run the container:
 ```bash
 docker run -d --name telegram-reminder-bot -e TELEGRAM_TOKEN="your-token-here" telegram-reminder-bot
 ```
@@ -54,7 +60,7 @@ docker rm telegram-reminder-bot
 #### Steps
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/qetlife/telegram-reminder-bot.git
 cd telegram-reminder-bot
 ```
 
